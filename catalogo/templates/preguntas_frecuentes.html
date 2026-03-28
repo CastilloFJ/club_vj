@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Preguntas Frecuentes</h1>
+    
+    <img src="{% static 'img/l1_club_vj_v2.png' %}" alt="Logo del Club V.J." class="d-block mx-auto mb-5" style="max-width: 150px;">
+
+    <div class="accordion" id="accordionFAQ">
+        
+        <div class="accordion-item mb-3 border rounded-3 overflow-hidden">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    ✨ ¿Cuentan con diferentes tipos de suscripciones?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body bg-light">
+                    ¡Claro que sí! Contamos con planes **Bronce, Plata y Oro (VIP)**. Cada uno ofrece distintos beneficios, desde mayor número de alquileres simultáneos hasta acceso prioritario a lanzamientos de última generación.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3 border rounded-3 overflow-hidden">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                    🎮 ¿Por cuánto tiempo puedo alquilar un juego?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body bg-light">
+                    Es posible alquilar juegos por un período determinado, con opciones flexibles de **3, 7 o 14 días**, adaptándonos a tu ritmo de juego.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3 border rounded-3 overflow-hidden">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                    🎓 ¿Existen descuentos especiales?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body bg-light">
+                    Sí, ofrecemos descuentos especiales para **estudiantes** y miembros de la comunidad local. Solo necesitas presentar una identificación vigente en nuestra sede.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3 border rounded-3 overflow-hidden">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                    🕹️ ¿Para qué consolas tienen catálogo?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body bg-light">
+                    Tenemos un catálogo híbrido: desde consolas **Retro** (NES, Sega Genesis, PS1) hasta la **Next-Gen** (PS5, Xbox Series X y Nintendo Switch). ¡La estantería de Don Pedro tiene de todo!
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3 border rounded-3 overflow-hidden">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                    💳 ¿Qué métodos de pago aceptan?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body bg-light">
+                    Aceptamos tarjetas de crédito, débito, transferencias bancarias y efectivo directamente en el club.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.min.js"></script>
+
+<style>
+    /* Para quitar el borde azul por defecto al hacer clic */
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(0,0,0,.125);
+    }
+    .accordion-button:not(.collapsed) {
+        color: #0d6efd;
+        background-color: #e7f1ff;
+    }
+</style>
+{% endblock %}

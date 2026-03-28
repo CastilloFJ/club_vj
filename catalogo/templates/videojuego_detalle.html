@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container justify-content-center">
+    <h1 class="text-center my-3">Descripción del Videojuego</h1>
+    
+
+    <div class="card mb-3 mt-5 mx-auto" style="max-width: 85%;">
+        <div class="row g-0">
+            <div class="col-md-3">
+            <img src="{% static 'img/'|add:detalle_vj.imagen %}" class="img-fluid rounded-start " alt="...">
+            </div>
+            <div class="col-md-6">
+            <div class="card-body">
+                <h5 class="card-title" style="font-size: 26px;">{{ detalle_vj.titulo }}</h5>
+                <p class="card-text">{{ detalle_vj.descripcion }}</p>
+                <p class="card-text"><small class="text-muted" style="font-size: 22px;">Género: {{ detalle_vj.genero }}</small></p>
+            </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="{% static 'img/'|add:detalle_vj.plataforma.imagen %}" class="card-img-top" alt="...">
+                
+                <a href="{% url 'videojuegos' %}" class="btn btn-primary mt-5">Volver al Catálogo</a>
+            </div>
+            
+        </div>
+    
+    </div>
+    
+</div>  
+
+{% endblock %}
+

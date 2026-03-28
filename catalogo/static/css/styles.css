@@ -1,0 +1,296 @@
+/* 1. Variables de Configuración */
+:root {
+    --deep-black: #000000;
+    --neon-blue: #00d4ff;
+    --neon-magenta: #ff00ff;
+    --neon-green: #99ff14;
+    --neon-red: #ff3131;
+    --text-muted: #e4e8ec;
+    --transition-standard: all 0.3s ease;
+    --ps-brand-blue: #0072ff;
+    --xbox-brand-green: #2ca02c;
+    --ns-brand-red: #fa2d16; 
+    --ns-brand-blue: #00ccff;
+    --console-card-bg: rgba(15, 15, 15, 0.7);
+}
+
+/* 2. Base y Layout */
+html, body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+body {
+    overflow-x: hidden;
+    padding-top: 80px; /* Espacio para el navbar fijo */
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* 3. Animaciones Compartidas */
+@keyframes neon-border-cycle {
+    0%, 100% { border-color: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+    25% { border-color: var(--neon-magenta); box-shadow: 0 0 10px var(--neon-magenta); }
+    50% { border-color: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
+}
+
+/* 4. Componentes de Navegación y Footer */
+.navbar-custom, 
+.footer-custom {
+    background-color: var(--deep-black) !important;
+    animation: neon-border-cycle 8s infinite;
+    color: #fff;
+}
+
+.navbar-custom {
+    border-bottom: 2px solid var(--neon-blue);
+    padding: 0.8rem 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+}
+
+.footer-custom {
+    border-top: 2px solid var(--neon-blue);
+    padding: 3rem 1rem;
+    margin-top: auto;
+}
+
+/* 5. Tipografía Neón */
+.neon-text {
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 15px var(--neon-blue);
+    font-weight: bold;
+    transition: var(--transition-standard);
+    font-size: 1.5rem;
+}
+
+.neon-text-user {
+    color: #ffffff !important;
+    text-shadow: 0 0 5px #fdfdfd;
+    font-size: 1.1rem;
+}
+
+.footer-title {
+    color: #fff !important;
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 15px var(--neon-blue);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* 6. Enlaces y Hovers */
+.neon-hover {
+    color: var(--text-muted) !important;
+    text-decoration: none;
+    transition: var(--transition-standard);
+    position: relative;
+}
+
+/* El navbar mantiene su posición, el footer se desplaza */
+.navbar-nav .neon-hover:hover {
+    color: #fff !important;
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    transform: translateY(-2px);
+}
+
+.footer-custom .neon-hover {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer-custom .neon-hover:hover {
+    color: #fff !important;
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    transform: translateX(5px);
+}
+
+.social-icon {
+    color: var(--text-muted);
+    transition: var(--transition-standard);
+}
+
+.social-icon:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* 7. Dropdowns (Submenús) */
+.dropdown-menu {
+    background-color: var(--deep-black);
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.dropdown-item {
+    color: var(--text-muted);
+    transition: 0.3s;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 212, 255, 0.1);
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+/* 8. Botones */
+.btn-neon-auth, 
+.btn-neon-exit {
+    background: transparent;
+    transition: 0.4s;
+    border: 1px solid;
+}
+
+.btn-neon-auth {
+    color: #fff;
+    border-color: var(--neon-blue);
+}
+
+.btn-neon-auth:hover {
+    background: var(--neon-blue);
+    box-shadow: 0 0 20px var(--neon-blue);
+    color: #000;
+}
+
+.btn-neon-exit {
+    color: var(--neon-red);
+    border-color: var(--neon-red);
+    padding: 0.2rem 0.8rem;
+}
+
+.btn-neon-exit:hover {
+    background: var(--neon-red);
+    box-shadow: 0 0 15px var(--neon-red);
+    color: #fff;
+}
+
+/* 9. Tarjetas de Productos */
+.card {
+    height: 100%;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.product-img-container {
+    height: 250px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.product-img {
+    max-height: 250px !important;
+    max-width: 80%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .product-img {
+    transform: scale(1.05);
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: #555;
+    overflow: hidden;
+    height: 4.2em; /* Alineación de texto */
+}
+
+/* 10. Utilidades de UI */
+.navbar-toggler {
+    filter: invert(1);
+    border: none !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+    outline: none;
+}
+
+/* 11. Media Queries (Modo Claro y Responsivo) */
+@media (prefers-color-scheme: light) {
+    .navbar-custom, .footer-custom {
+        background-color: #f8f9fa !important;
+        border-color: #dee2e6;
+        animation: none; /* Opcional: quitar animación en modo claro */
+        box-shadow: none;
+    }
+    
+    .neon-hover {
+        color: #212529 !important;
+    }
+    
+    .footer-title {
+        color: #212529 !important;
+        text-shadow: none;
+        border-bottom-color: #212529;
+    }
+}
+
+/* Ajustes para .carousel-item */
+:root {
+    --carousel-speed: 0.3s;
+}
+
+.carousel-item {
+    position: relative;
+    transition: opacity var(--carousel-speed) ease-in-out;
+}
+
+
+/*Logos de consolas en svg*/
+/* Tarjeta específica para consolas */
+.icon-card {
+    background: var(--console-card-bg);
+    border: 1px solid #222;
+    border-radius: 2rem;
+    padding: 3rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    height: 100%; /* Para que midan lo mismo en la fila */
+}
+
+.icon-card:hover {
+    border-color: #444;
+    background: rgba(25, 25, 25, 0.9);
+    transform: translateY(-5px);
+}
+
+/* Efectos de Brillo (Glow) específicos */
+.glow-ps { filter: drop-shadow(0 0 8px var(--ps-brand-blue)); }
+.glow-xbox { filter: drop-shadow(0 0 8px var(--xbox-brand-green)); }
+.glow-switch {
+    filter: drop-shadow(-4px 0 10px var(--ns-brand-red)) 
+            drop-shadow(4px 0 10px var(--ns-brand-blue));
+}
+
+/* Animación para los iconos dentro de icon-card */
+.icon-card svg {
+    transition: transform 0.3s ease;
+}
+
+.icon-card:hover svg {
+    transform: scale(1.1);
+}
+
+/* Etiqueta de texto para consolas */
+.console-label {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: none;
+}

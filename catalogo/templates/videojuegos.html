@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Catálogo Club V.J.</h1>
+
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-11">
+            <form method="GET" action="{% url 'videojuegos' %}" class="input-group shadow-sm border rounded-3 overflow-hidden">
+                
+                <input type="text" name="titulo" class="form-control border-0 py-3 px-4" 
+                       placeholder="¿Qué quieres jugar hoy?..." value="{{ request.GET.titulo|default:'' }}">
+
+                <select name="annio" class="form-select border-0 border-start bg-light" style="max-width: 130px;">
+                    <option value="">Año</option>
+                    {% for a in annios %}
+                        <option value="{{ a }}" {% if request.GET.annio == a|stringformat:"s" %}selected{% endif %}>{{ a }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="plataforma" class="form-select border-0 border-start bg-light" style="max-width: 160px;">
+                    <option value="">Plataforma</option>
+                    {% for p in plataformas %}
+                        <option value="{{ p.nombre }}" {% if request.GET.plataforma == p.nombre %}selected{% endif %}>{{ p.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="genero" class="form-select border-0 border-start bg-light" style="max-width: 150px;">
+                    <option value="">Género</option>
+                    {% for g in generos %}
+                        <option value="{{ g.nombre }}" {% if request.GET.genero == g.nombre %}selected{% endif %}>{{ g.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <button class="btn btn-dark px-4" type="submit">
+                    Filtrar
+                </button>
+                
+                {% if request.GET.titulo or request.GET.annio or request.GET.plataforma or request.GET.genero %}
+                    <a href="{% url 'videojuegos' %}" class="btn btn-outline-danger d-flex align-items-center border-0 border-start" title="Limpiar filtros">
+                        ✕
+                    </a>
+                {% endif %}
+            </form>
+            
+            <div class="text-muted mt-2 ps-2">
+                <small>Mostrando {{ videojuegos|length }} resultados</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center"> 
+        {% for item in videojuegos %}
+            
+            {% if item.annio != annio_actual or user.userprofile.vip %}
+
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+
+            <div class="card h-100 shadow-sm border-0 bg-white" style="width: 18rem; border-radius: 15px;">
+                
+                <div class="product-img-container" style="border-radius: 15px 15px 0 0;">
+                    <img src="{% static 'img/'|add:item.imagen %}" 
+                            class="product-img" alt="{{ item.titulo }}">
+                </div>
+                
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">{{ item.titulo }}</h5>
+                    <div class="d-flex justify-content-center gap-2 mb-2">
+                        <span class="badge bg-secondary opacity-75">{{ item.annio }}</span>
+                        <span class="badge bg-info text-dark">{{ item.plataforma }}</span>
+                    </div>
+                    <p class="card-text product-description">{{ item.genero }}</p>
+                </div>
+
+                <div class="card-body text-center mt-auto">
+                    <a href="{% url 'videojuego' item.id %}" class="btn btn-outline-dark w-100 rounded-pill">Ver Detalles</a>
+                </div>
+    
+            </div>
+
+        </div>
+        {% endif %}
+        {% empty %}
+        <div class="col-12 text-center my-5">
+            <div class="p-5 bg-light rounded-3">
+                <h3 class="text-muted">No encontramos juegos con esos filtros</h3>
+                <p>Intenta con otros términos o limpia la búsqueda.</p>
+                <a href="{% url 'videojuegos' %}" class="btn btn-primary mt-3">Ver todo el catálogo</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>  
+</div>
+
+<style>
+    /* Estilo para que la barra se vea profesional */
+    .input-group:focus-within {
+        box-shadow: 0 0 10px rgba(0,0,0,0.1) !important;
+        border-color: #0d6efd !important;
+    }
+    .form-select:focus, .form-control:focus {
+        box-shadow: none !important;
+        border-color: transparent !important;
+    }
+    .card:hover img {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
